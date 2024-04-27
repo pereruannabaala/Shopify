@@ -91,6 +91,30 @@
       
             </div>
           </nav>
+
+          <!-- message alert section -->
+          {% for message in get_flashed_messages() %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 5px;">
+              <strong>{{ message }}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+
+          {% block body %}
+
+
+          {% endblock %}
+      
+      
+          <footer class="container-fluid  text-center p-2 mt-5" style="background-color: orange; color: white;">
+            <a href="https://github.com/pereruannabaala" style="color: white;">Amazon</a> | <span>
+              <i class="fa-sharp fa-regular fa-copyright"></i></span> 2024 All rights reserved
+          </footer>
+
+
+
+
+
     
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
