@@ -39,3 +39,11 @@ class Customer(db.Model, UserMixin):
 
         def __str__(self):
             return 'Product &r>' % Product.id # prints(Product1) <Product 1>
+
+    
+    class Cart(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        quantity = db.Column(db.Integer, nullable=False)
+    
+    def __str__(self):
+        return 'Cart &r>' % Cart.id # prints(Cart1) <Cart 1>
