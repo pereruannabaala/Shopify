@@ -1,6 +1,8 @@
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class Customer(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,6 +14,10 @@ class Customer(db.Model, UserMixin):
 # Hides Password
     @property
     def password(self):
-        raise AttributeError('Password is not readable')
+        raise AttributeError('Password is not a readable attribute ')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password=password)
 
     
