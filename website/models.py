@@ -45,5 +45,16 @@ class Customer(db.Model, UserMixin):
         id = db.Column(db.Integer, primary_key=True)
         quantity = db.Column(db.Integer, nullable=False)
     
-    def __str__(self):
+        def __str__(self):
         return 'Cart &r>' % Cart.id # prints(Cart1) <Cart 1>
+
+    
+    class Order(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        quantity = db.Column(db.Integer, nullable=False)
+        price = db.Column(db.Float, nullable=False)
+        status = db.Column(db.String(100), nullable=False)
+        payment_id = db.Column(db.String(1000), nullable=False)
+
+        def __str__(self):
+            return 'Order &r>' % Order.id # prints(Order1) <Order 1>
