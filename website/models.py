@@ -11,6 +11,10 @@ class Customer(db.Model, UserMixin):
     password_hash= db.Column(db.String(150),nullable=False)
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
+    # Customer Table relationship to the Cart Table
+    cart_items = db.relationship('Cart', backref=db.backref('Customer', lazy=True ))
+    orders = db.relationship('Order', backref=db.backref('Customer', lazy=True ))
+
 # password_hash decorator 
     @property
     def password(self):
@@ -31,12 +35,15 @@ class Customer(db.Model, UserMixin):
         id = db.Column(db.Integer, primary_key=True)
         product_name = db.Column(db.String(100), nullable=False)
         current_price = db.Column(db.Float, nullable=False)
-        previuos_price = db.Column(db.Float, nullable=False)
+        previous_price = db.Column(db.Float, nullable=False)
         in_stock = db.Column(db.Integer, nullable=False)
         product_picture = db.Column(db.String(1000), nullable=False)
         flash_sale = db.Column(db.Boolean, default=False)
         date_added = db.Column(db.DateTime(), default=datetime.utcnow)
 
+        carts = db.relationship('Cart', backref=db.backref('product', lazy=True))
+        orders = db.relationship('Order', backref=db.backref('product', lazy=True ))
+        
         def __str__(self):
             return 'Product &r>' % Product.id # prints(Product1) <Product 1>
 
@@ -44,9 +51,13 @@ class Customer(db.Model, UserMixin):
     class Cart(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         quantity = db.Column(db.Integer, nullable=False)
-    
+        
+        #Customer Table Relationship with Cart Table
+        customer_link = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+        product_link = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
         def __str__(self):
-        return 'Cart &r>' % Cart.id # prints(Cart1) <Cart 1>
+            return 'Cart &r>' % Cart.id # prints(Cart1) <Cart 1>
 
     
     class Order(db.Model):
@@ -55,6 +66,9 @@ class Customer(db.Model, UserMixin):
         price = db.Column(db.Float, nullable=False)
         status = db.Column(db.String(100), nullable=False)
         payment_id = db.Column(db.String(1000), nullable=False)
+
+        customer_link = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+        product_link = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False) 
 
         def __str__(self):
             return 'Order &r>' % Order.id # prints(Order1) <Order 1>
