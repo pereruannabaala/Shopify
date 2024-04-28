@@ -11,7 +11,7 @@ class Customer(db.Model, UserMixin):
     password_hash= db.Column(db.String(150),nullable=False)
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
-# Hides Password
+# password_hash decorator 
     @property
     def password(self):
         raise AttributeError('Password is not a readable attribute ')
@@ -22,3 +22,8 @@ class Customer(db.Model, UserMixin):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password=password)
+    
+    def __str__(self):
+        return 'Customer &r>' % Customer.id # prints(Customer1) <Customer 1>
+
+    
