@@ -9,3 +9,9 @@ class Customer(db.Model, UserMixin):
     password_hash= db.Column(db.String(150),nullable=False)
     date_joined = db.Column(db.DateTime(), default=datetime.utcnow)
 
+# Hides Password
+    @property
+    def password(self):
+        raise AttributeError('Password is not readable')
+
+    
