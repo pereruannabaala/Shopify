@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-
+#SQLAlchemy instance
 db = SQLAlchemy
 DB_NAME = 'database.sqlite3'
 
@@ -34,5 +34,5 @@ app.register_blueprint(admin, url_prefix='/')
 with app.app_context():
     create_database()
      
-    return app
+return app
 
