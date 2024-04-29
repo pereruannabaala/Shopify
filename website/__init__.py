@@ -23,16 +23,16 @@ class DB:
 db = DB()
 db.init_app(app=app)
 
-    from .views import views
-    from .auth import auth
-    from .admin import admin
+from .views import views
+from .auth import auth
+from .admin import admin
 
-    app.register_blueprint(views, url_prefix='/') # localhost:5000/about-us
-    app.register_blueprint(auth, url_prefix='/') # localhost:5000/auth/change-password
-    app.register_blueprint(admin, url_prefix='/')
+app.register_blueprint(views, url_prefix='/') # localhost:5000/about-us
+app.register_blueprint(auth, url_prefix='/') # localhost:5000/auth/change-password
+app.register_blueprint(admin, url_prefix='/')
 
-    with app.app_context():
-        create_database()
+with app.app_context():
+    create_database()
      
     return app
 
