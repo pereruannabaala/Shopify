@@ -7,15 +7,21 @@ DB_NAME = 'database.sqlite3'
 
 def  create_database():
     db.create_all()
-    print('Database created successfully')
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_Name}'
-
-    db.init_app(app)
-
-
+    print('Database created')
+    
+   
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hbnwdvbn ajnbsjn ahe'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///' + DB_NAME
+
+class DB:
+    def init_app(self, app):
+        # Initialize the app here
+        pass
+
+db = DB()
+db.init_app(app=app)
 
     from .views import views
     from .auth import auth
