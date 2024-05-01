@@ -6,16 +6,16 @@ auth = Blueprint('auth', __name__)
 
 
 
-@auth.route('/sign-up')
+@auth.route('/signup')
 def sign_up(): 
     form = SignUpForm()
 
-    return render_template('website\templates\signup.html', form=form)
+    return render_template('signup.html', form=form)
 
 
 
 @auth.route('/login')
 def login():
     form = LoginForm()
-    return render_template('website\templates\login.html', form=form)
+    return render_template('login.html', form=form)
 
