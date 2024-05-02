@@ -22,6 +22,13 @@ def sign_up():
             new_customer.username = username
             new_customer.password = password2
 
+        try:
+            db.session.add(new_customer)
+            db.session.commit()
+            flash('Account Created Successfully, You can now Login')
+            return redirect('/login')
+
+
     return render_template('signup.html', form=form)
 
 
