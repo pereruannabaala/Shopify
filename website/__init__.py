@@ -28,6 +28,7 @@ def create_app():
     from .views import views
     from .auth import auth
     from .admin import admin
+    from .models import Customer
 
     # Registering blueprints
     app.register_blueprint(views, url_prefix='/')  # localhost:5000/about-us
