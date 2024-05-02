@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from .forms import LoginForm, SignUpForm
-
+from .models import Customer
 
 auth = Blueprint('auth', __name__)
 
@@ -16,7 +16,7 @@ def sign_up():
         password2 = form.password2.data
 
         if password1 == password2:
-            
+
     return render_template('signup.html', form=form)
 
 
