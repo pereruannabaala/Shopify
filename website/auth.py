@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 from .forms import LoginForm, SignUpForm
 from .models import Customer
+from . import db
 
 auth = Blueprint('auth', __name__)
 
