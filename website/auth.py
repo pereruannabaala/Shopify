@@ -27,6 +27,17 @@ def sign_up():
             db.session.commit()
             flash('Account Created Successfully, You can now Login')
             return redirect('/login')
+        except Exception as e:
+            print(e)
+            flash('Account not created! Email already exists')
+        
+
+
+
+
+
+
+
 
 
     return render_template('signup.html', form=form)
