@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash, redirect
 from .forms import LoginForm, SignUpForm
 from .models import Customer
 from . import db
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 
 
 auth = Blueprint('auth', __name__)
@@ -55,7 +55,7 @@ def login():
         if customer:
               if customer.verify_password(password=password)
                 login_user(customer)
-                redirect('/')
+                return redirect('/')
             else:
                 flash('Incorrect Email or Password')
             else:
@@ -64,4 +64,7 @@ def login():
     return render_template('login.html', form=form)
 
 @auth.route('/logout', methods=['GET', 'POST'])
+@login_required
 def log_out():
+    logout_user()
+    return redirect('/')
