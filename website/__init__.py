@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+ from flask_login import LoginManager
 # SQLAlchemy instance
 db = SQLAlchemy()
 DB_NAME = 'database.sqlite3'
@@ -28,7 +28,7 @@ def create_app():
     from .views import views
     from .auth import auth
     from .admin import admin
-    from .models import Customer
+    from .models import Customer, Cart, Product, Order
 
     # Registering blueprints
     app.register_blueprint(views, url_prefix='/')  # localhost:5000/about-us
