@@ -53,15 +53,16 @@ def login():
         customer = Customer.query.filter_by(email=email).first()
 
         if customer:
-              if customer.verify_password(password=password)
+            if customer.verify_password(password=password):
                 login_user(customer)
                 return redirect('/')
             else:
                 flash('Incorrect Email or Password')
-            else:
-                flash('Account does not exist Sign Up')
+        else:
+            flash('Account does not exist. Sign Up')
 
     return render_template('login.html', form=form)
+
 
 @auth.route('/logout', methods=['GET', 'POST'])
 @login_required
