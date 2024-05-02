@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
- from flask_login import LoginManager
+from flask_login import LoginManager
 # SQLAlchemy instance
 db = SQLAlchemy()
 DB_NAME = 'database.sqlite3'
@@ -24,11 +24,19 @@ def create_app():
     # Initialize SQLAlchemy with the app
     db.init_app(app)
 
+    login_manager =LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'auth.login'
+
+    @login_manager.user_loader
+    def load_user(id):
+        return Customer.query.get(int(id))
+
     # Importing blueprints
     from .views import views
     from .auth import auth
     from .admin import admin
-    from .models import Customer, Cart, Product, Order
+    from .models import Customer, Product, Cart, Order
 
     # Registering blueprints
     app.register_blueprint(views, url_prefix='/')  # localhost:5000/about-us

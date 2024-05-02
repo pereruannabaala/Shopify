@@ -8,10 +8,8 @@ from flask_login import login_user, login_required, logout_user
 auth = Blueprint('auth', __name__)
 
 
-
-
-@auth.route('/signup', methods=['GET', 'POST'])
-def sign_up(): 
+@auth.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
     form = SignUpForm()
     if form.validate_on_submit():
         email = form.email.data
@@ -25,22 +23,21 @@ def sign_up():
             new_customer.username = username
             new_customer.password = password2
 
-        try:
-            db.session.add(new_customer)
-            db.session.commit()
-            flash('Account Created Successfully, You can now Login')
-            return redirect('/login')
-        except Exception as e:
-            print(e)
-            flash('Account not created! Email already exists')
+            try:
+                db.session.add(new_customer)
+                db.session.commit()
+                flash('Account Created Successfully, You can now Login')
+                return redirect('/login')
+            except Exception as e:
+                print(e)
+                flash('Account Not Created!, Email already exists')
 
-        form.email.data = ''
-        form.username.data = ''
-        form.password1.data = ''
-        form.password2.data = ''
+            form.email.data = ''
+            form.username.data = ''
+            form.password1.data = ''
+            form.password2.data = ''
 
     return render_template('signup.html', form=form)
-
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -58,8 +55,9 @@ def login():
                 return redirect('/')
             else:
                 flash('Incorrect Email or Password')
+
         else:
-            flash('Account does not exist. Sign Up')
+            flash('Account does not exist please Sign Up')
 
     return render_template('login.html', form=form)
 
