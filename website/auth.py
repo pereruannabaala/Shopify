@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, flash, redirect
 from .forms import LoginForm, SignUpForm
 from .models import Customer
 from . import db
+from flask_login import login_user
+
 
 auth = Blueprint('auth', __name__)
 
@@ -47,6 +49,19 @@ def login():
     if form.validate_on_submit():
         email = form.email.data
         password = form.password.data
-        
+
+        customer = Customer.query.filter_by(email=email).first()
+
+        if customer:
+              if customer.verify_password(password=password)
+                login_user(customer)
+                redirect('/')
+            else:
+                flash('Incorrect Email or Password')
+            else:
+                flash('Account does not exist Sign Up')
+
     return render_template('login.html', form=form)
 
+@auth.route('/logout', methods=['GET', 'POST'])
+def log_out():
