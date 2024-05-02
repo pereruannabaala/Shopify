@@ -7,7 +7,8 @@ auth = Blueprint('auth', __name__)
 
 
 
-@auth.route('/signup', methods='GET','POST')
+
+@auth.route('/signup', methods=['GET', 'POST'])
 def sign_up(): 
     form = SignUpForm()
     if form.validate_on_submit():
@@ -30,22 +31,22 @@ def sign_up():
         except Exception as e:
             print(e)
             flash('Account not created! Email already exists')
-        
 
-
-
-
-
-
-
-
+        form.email.data = ''
+        form.username.data = ''
+        form.password1.data = ''
+        form.password2.data = ''
 
     return render_template('signup.html', form=form)
 
 
 
-@auth.route('/login', methods='GET','POST')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        
     return render_template('login.html', form=form)
 
