@@ -23,7 +23,7 @@
                 <div class="password"><h4>Confirm Password</h4>{{ form.password2 }} <hr></div>
 
                 <div class="buttons">
-                    <a href="/login"> Login</a>
+                    <a href="{{ url_for( 'auth.login') }}"> Login</a>
                     {{ form.submit() }}
                 </div>
 

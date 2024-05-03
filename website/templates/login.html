@@ -21,7 +21,7 @@
                 <div class="password"><h4>Password</h4>{{ form.password }} <hr></div>
 
                 <div class="buttons">
-                    <a href="/signup"> Sign Up</a>
+                    <a href="{{ url_for( 'auth.sign_up') }}"> Sign Up</a>
                     {{ form.submit() }}
                 </div>
 
