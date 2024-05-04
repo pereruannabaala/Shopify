@@ -68,7 +68,10 @@ def log_out():
     logout_user()
     return redirect('/')
 
-@auth.route('/profile/<int:customer_id')
+
+
+@auth.route('/profile/<int:customer_id>')
 @login_required
 def profile(customer_id):
-    
+    print('Customer Id:', customer_id)
+    return f'Customer Id is {customer_id}'
