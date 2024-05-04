@@ -70,3 +70,5 @@ def log_out():
 
 @auth.route('/profile/<int:customer_id')
 @login_required
+def profile(customer_id):
+    
