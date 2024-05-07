@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block title %} Home {% endblock %}
 
@@ -13,8 +13,7 @@
         
             <ul class="list-unstyled">
                 <li class="d-grid"><a href="#" class="btn btn-primary">Profile</a></li>
-                <li class="d-grid"><a href="/change-password/{{ customer.id }}" class="btn btn-primary" style="margin-top: 5px;">Change Password</a></li>
-
+                <li class="d-grid"><a href="{{ url_for('auth.change_password', customer_id=current_user.id) }}" class="btn btn-primary" style="margin-top: 5px;">Change Password</a></li>
             </ul>
         
         </div>

@@ -80,7 +80,7 @@
 
           
             {% if current_user.is_authenticated %}
-            <li><a class="dropdown-item" href="/profile/{{ current_user.id }}">Profile <i class="fa-solid fa-user"></i></a></li>
+            <li><a class="dropdown-item" href="{{ url_for('auth.profile', customer_id=current_user.id) }}">Profile <i class="fa-solid fa-user"></i></a></li>
             <li><a class="dropdown-item" href="/orders">Orders <i class="fa-solid fa-truck-fast"></i></a></li>
             <li><a class="dropdown-item" href="/logout">Log Out <i class="fa-solid fa-right-from-bracket"></i></a></li>
 
