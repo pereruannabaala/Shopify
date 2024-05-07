@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, PasswordChangeForm
 from .models import Customer
 from . import db
 from flask_login import login_user, login_required, logout_user
@@ -73,5 +73,12 @@ def log_out():
 @auth.route('/profile/<int:customer_id>')
 @login_required
 def profile(customer_id):
-customer = Customer.query.get(customer_id)
+    customer = Customer.query.get(customer_id)
     return render_template('profile.html', customer=customer)
+
+
+@auth.route('/change-password/<int:customer_id>', methods=['POST'])
+@login_required
+def change_password(customer_id):
+    form = ChangePasswordForm
+    render_template('change_password.html')
