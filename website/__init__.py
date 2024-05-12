@@ -24,6 +24,11 @@ def create_app():
     # Initialize SQLAlchemy with the app
     db.init_app(app)
 
+    # Error prompt page for non existent urls
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('404.html')
+
     login_manager =LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
