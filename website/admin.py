@@ -4,6 +4,7 @@ from .forms import ShopItemsForm
 
 admin = Blueprint('admin',__name__)
 
+#add items forms
 @admin.route('/add-shop-items', methods=['GET','POST'])
 @login_required
 def add_shop_items():
@@ -11,3 +12,4 @@ def add_shop_items():
         form = ShopItemsForm()
         return render_template('add-shop-items.html',form=form)
     return render_template('404.html')
+
