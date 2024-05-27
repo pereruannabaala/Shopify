@@ -20,8 +20,14 @@ def add_shop_items():
             flash_sale = form.flash_sale.data
 
             file = form.product_picture.data
-            file_name = secure_filename(file.filename)
 
+            file_name = secure_filename(file.filename)# removes whitespace and invalid characters from filename
+            
+            file_path = f'./media/{file_name}'
+
+            file.save(file_path)
+
+            
 
         return render_template('add-shop-items.html',form=form)
     return render_template('404.html')
