@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash 
 from flask_login import login_required, current_user
 from .forms import ShopItemsForm
-from werzeug.utils import secure_filename
+from werkzeug.utils import secure_filename
 from .models import Product
 from . import db
 
@@ -47,7 +47,7 @@ def add_shop_items():
             except Exception as e:
                 print(e)
                 flash('Item Not added')
-                
+
         return render_template('add-shop-items.html',form=form)
     return render_template('404.html')
 
