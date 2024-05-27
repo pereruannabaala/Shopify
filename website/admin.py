@@ -44,8 +44,10 @@ def add_shop_items():
                 flash(f'{product_name} added successfully')
                 print('Product Added')
                 return render_template('add-shop-items.html', form=form)
-
-
+            except Exception as e:
+                print(e)
+                flash('Item Not added')
+                
         return render_template('add-shop-items.html',form=form)
     return render_template('404.html')
 
