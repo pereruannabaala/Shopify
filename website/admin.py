@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template 
+from flask import Blueprint, render_template, flash 
 from flask_login import login_required, current_user
 from .forms import ShopItemsForm
 from werzeug.utils import secure_filename
 from .models import Product
+from . import db
+
 
 admin = Blueprint('admin',__name__)
 
@@ -36,7 +38,13 @@ def add_shop_items():
 
             new_shop_item.product_picture = file_path
 
-            
+            try:
+                db.session.add(new_shop_item)
+                db.session.commit()
+                flash(f'{product_name} added successfully')
+                print('Product Added')
+                return render_template('add-shop-items.html', form=form)
+
 
         return render_template('add-shop-items.html',form=form)
     return render_template('404.html')
