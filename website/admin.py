@@ -56,5 +56,5 @@ def add_shop_items():
 def shop_items():
     if current_user.id == 1:
         items = Product.query.order_by(Product.dare_added).all()
-        return render_template('shop-items.html', items=items)
+        return render_template('shop-items.html', items=shop_items)
     return render_template('404.html')
