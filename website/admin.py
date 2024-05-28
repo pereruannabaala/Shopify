@@ -8,6 +8,12 @@ from . import db
 
 admin = Blueprint('admin',__name__)
 
+@admin.route('/media/<path:filename>')
+def get_image(filename):
+    return send_from_directory('media, filename>')
+
+
+
 #add items forms
 @admin.route('/add-shop-items', methods=['GET','POST'])
 @login_required
@@ -55,6 +61,6 @@ def add_shop_items():
 @login_required
 def shop_items():
     if current_user.id == 1:
-        items = Product.query.order_by(Product.dare_added).all()
-        return render_template('shop-items.html', items=shop_items)
+        items = Product.query.order_by(Product.date_added).all()
+        return render_template('shop-items.html', items=items)
     return render_template('404.html')
