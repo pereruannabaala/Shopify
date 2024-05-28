@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect
+from flask import Blueprint, render_template, flash, redirect, url_for
 from .forms import LoginForm, SignUpForm, PasswordChangeForm
 from .models import Customer
 from . import db
@@ -27,7 +27,7 @@ def sign_up():
                 db.session.add(new_customer)
                 db.session.commit()
                 flash('Account Created Successfully, You can now Login')
-                return redirect('/login')
+                return redirect(url_for('auth.login'))
             except Exception as e:
                 print(e)
                 flash('Account Not Created!, Email already exists')
