@@ -57,6 +57,7 @@ def add_shop_items():
         return render_template('add-shop-items.html',form=form)
     return render_template('404.html')
 
+
 @admin.route('/shop-items', methods=['GET', 'POST'])
 @login_required
 def shop_items():
@@ -67,27 +68,10 @@ def shop_items():
 
 
 
-@admin.route('/update-order/<int:order_id>', methods=['GET', 'POST'])
+@admin.route('/update-item/<int:item_id>', methods=['GET', 'POST'])
 @login_required
-def update_order(order_id):
+def update_item(item_id):
     if current_user.id == 1:
-        form = OrderForm()
-
-        order = Order.query.get(order_id)
-
-        if form.validate_on_submit():
-            status = form.order_status.data
-            order.status = status
-
-            try:
-                db.session.commit()
-                flash(f'Order {order_id} Updated successfully')
-                return redirect('/view-orders')
-            except Exception as e:
-                print(e)
-                flash(f'Order {order_id} not updated')
-                return redirect('/view-orders')
-
-        return render_template('order_update.html', form=form)
-
+        form = ShopItemsForm()
+        return render_template('update_item.html', form=form)
     return render_template('404.html')
