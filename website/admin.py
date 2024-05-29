@@ -73,5 +73,5 @@ def shop_items():
 def update_item(item_id):
     if current_user.id == 1:
         form = ShopItemsForm()
-        return render_template('update_item.html', form=form)
+        return redirect(url_for('admin.update_item', form=form))
     return render_template('404.html')
