@@ -40,11 +40,10 @@
 
 
             <td>
-                <a href="/update-item/{{ item.id }}">Update</a>
+                <a href="{{ url_for('admin.update_item', item_id=item.id) }}">Update</a>
                 <br>
                 <a href="/delete-item/{{ item.id }}">Delete</a>
             </td>
-
         </tr>
 
 

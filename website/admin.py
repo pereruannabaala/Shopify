@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, send_from_directory
+from flask import Blueprint, render_template, flash, send_from_directory, url_for, redirect
 from flask_login import login_required, current_user
 from .forms import ShopItemsForm
 from werkzeug.utils import secure_filename
@@ -68,10 +68,18 @@ def shop_items():
 
 
 
+@admin.route('/item-update/<int:item_id>', methods=['GET', 'POST'])
+@login_required
+def item_update(item_id):
+    if current_user.id == 1:
+        item = Product.query.get_or_404(item_id)
+        form = ShopItemsForm()
+        return render_template('update_item.html', form=form)
+
 @admin.route('/update-item/<int:item_id>', methods=['GET', 'POST'])
 @login_required
 def update_item(item_id):
     if current_user.id == 1:
-        form = ShopItemsForm()
-        return redirect(url_for('admin.update_item', form=form))
+        item = Product.query.get_or_404(item_id)
+        return redirect (url_for('admin.item_update', item_id=item.id))
     return render_template('404.html')
