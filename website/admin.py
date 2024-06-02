@@ -74,6 +74,15 @@ def item_update(item_id):
     if current_user.id == 1:
         item = Product.query.get_or_404(item_id)
         form = ShopItemsForm()
+
+        item_to_update = Product.query.get(item_id)
+
+        form.product_name.render_kw = { 'placeholder':  item_to_update.product_name}
+        form.previous_price.render_kw = { 'placeholder': item_to_update.previous_price}
+        form.current_price.render_kw = { 'placeholder': item_to_update.current_price}
+        form.in_stock.render_kw = { 'placeholder': item_to_update.in_stock}
+        form.flash_sale.render_kw = { 'placeholder': item_to_update.flash_sale}
+        
         return render_template('update_item.html', form=form)
 
 @admin.route('/update-item/<int:item_id>', methods=['GET', 'POST'])
