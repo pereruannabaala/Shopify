@@ -105,7 +105,7 @@ def item_update(item_id):
                                                                 product_picture=file_path))
                 db.session.commit()
                 flash(f'{product_name} updated Successfully')
-                return redirect (url_for('admin.shop-items'))                          
+                return redirect (url_for('admin.shop_items'))                          
             except Exception as e:
                 print('Product not updated', e)
                 flash('Item Not Updated')
