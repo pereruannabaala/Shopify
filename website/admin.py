@@ -119,3 +119,21 @@ def update_item(item_id):
         item = Product.query.get_or_404(item_id)
         return redirect (url_for('admin.item_update', item_id=item.id))
     return render_template('404.html')
+
+
+
+@admin.route('/delete-item/<int:item_id>', methods=['GET', 'POST'])
+@login_required
+def delete_item(item_id):
+    if current_user.id == 1:
+        try:
+            item_to_delete = Product.query.get(item_id)
+            db.session.delete(item_to_delete)
+            db.session.commit()
+            flash('One Item deleted')
+            return redirect (url_for('admin.shop_items'))
+        except Exception as e:
+            print('Item not deleted', e)
+            flash('Item not deleted')
+        return redirect(url_for('admin.shop_items'))
+    return render_template('404.html')
