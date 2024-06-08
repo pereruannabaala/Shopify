@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, flash, send_from_directory, url_for, redirect
 from flask_login import login_required, current_user
 from .forms import ShopItemsForm
-from werkzeug.utils import secure_filename
 from .models import Product
 from . import db
 

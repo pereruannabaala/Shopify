@@ -7,5 +7,7 @@ views = Blueprint('views',__name__)
 @views.route('/')
 def home():
 
-    items = Product.query.filter_by(flash_sale=True)
+    items = Product.query.all()
+    for product in items:
+        print(len(items),product.product_name, product.current_price, product.previous_price, product.product_picture, product.in_stock)
     return render_template('home.html', items=items)

@@ -122,7 +122,7 @@
             {% for item in items %}
             <div class="col" style="background-color: white;">
             
-                <img src="{{ item.product_picture }}" alt="" style="height: 202px; width: 180px; border-radius: 10px;">
+                <img src="./media/{product_picture}" alt="" style="height: 202px; width: 180px; border-radius: 10px;">
         
                 <div class="row" style="margin-top: 5px;">
                     <h6 style="color: gray;">{{ item.product_name }}</h6>
@@ -131,7 +131,7 @@
                 <div class="row" style="margin-top: 10px;">
                     <div class="col">
                         <h5 style="font-weight: 600; font-family: 'Times New Roman', Times, serif;">Ksh {{ item.current_price }}</h5>
-                        <strike><p style="color: gray;">Ksh {{ items.previous_price }}</p></strike>
+                        <strike><p style="color: gray;">Ksh {{ item.previous_price }}</p></strike>
                     </div>
         
                     <div class="col">
