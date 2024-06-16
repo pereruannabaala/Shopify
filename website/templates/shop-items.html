@@ -28,6 +28,10 @@
     <tbody>
         {% for item in items %}
 
+        {% if item.product_picture %}
+            {% set product_picture_path = item.product_picture.split('/')[2:] %}
+            {% set final_product_picture_path = '/'.join(product_picture_path) %}
+
         <tr>
             <th scope="row">{{ item.id }}</th>
             <td>{{ item.date_added }}</td>
@@ -35,7 +39,7 @@
             <td>{{ item.previous_price }}</td>
             <td>{{ item.current_price }}</td>
             <td>{{ item.in_stock }}</td>
-            <td><img src="{{ item.product_picture }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td>
+            <td><img src="{{ final_product_picture_path }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td> 
             <td>{{ item.flash_sale }}</td>
 
 
@@ -46,7 +50,7 @@
             </td>
         </tr>
 
-
+        {% endif%}
         {% endfor %}
     </tbody>
 </table>
