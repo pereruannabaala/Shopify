@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,flash,redirect
+from flask import Blueprint, render_template,flash,redirect,request
 from .models import Product, Cart
 from flask_login import login_required
 from . import db 
@@ -29,4 +29,8 @@ def add_to_cart(item_id)
             item_exists.quantity = item_exists.quantity + 1
             db.session.commit()
             flash(f' Quantity of { item_exists.product.product_name } has been updated')
-            return required
+            return redirect(request.referrer)
+        except Exception as e:
+            print('Quantity not Updated', e)
+            flash(f'Quantity of { item_exists.product.product_name } not updated')
+            return redirect(request.referrer)
