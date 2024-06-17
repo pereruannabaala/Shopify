@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from .models import Product
-
+from flask_login import login_required
 
 views = Blueprint('views',__name__)
 
@@ -16,3 +16,7 @@ def home():
             final_product_picture_path = '/'.join(product_picture_path)
             print(final_product_picture_path)
     return render_template('home.html', items=items)
+
+@views.route('/add-to-cart/<int:item_id')
+@login_required
+def add_to_cart(item_id)
