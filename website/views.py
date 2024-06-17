@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template
-from .models import Product
+from flask import Blueprint, render_template,flash,redirect
+from .models import Product, Cart
 from flask_login import login_required
+from . import db 
+
 
 views = Blueprint('views',__name__)
 
@@ -20,3 +22,11 @@ def home():
 @views.route('/add-to-cart/<int:item_id')
 @login_required
 def add_to_cart(item_id)
+    item_to_add = Product.query.get(item_id)
+    item_exists = Cart.query.filter_by(product_link=item_id, customer_link=current_user.id).first()
+    if items_exists:
+        try:
+            item_exists.quantity = item_exists.quantity + 1
+            db.session.commit()
+            flash(f' Quantity of { item_exists.product.product_name } has been updated')
+            return required
