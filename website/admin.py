@@ -3,13 +3,15 @@ from flask_login import login_required, current_user
 from .forms import ShopItemsForm
 from .models import Product
 from . import db
-
+from werkzeug.utils import secure_filename
+import os
+from . import app
 
 admin = Blueprint('admin',__name__)
 
-@admin.route('/media/<path:filename>')
+@admin.route('/static/<path:filename>')
 def get_image(filename):
-    return send_from_directory('../media', filename)
+    return send_from_directory('../static', filename)
 
 
 
@@ -30,7 +32,8 @@ def add_shop_items():
 
             file_name = secure_filename(file.filename)# removes whitespace and invalid characters from filename
             
-            file_path = f'./media/{file_name}'
+            file_path = os.path.join('website/static/images/' + file_name)
+
 
             file.save(file_path)
 
@@ -62,6 +65,11 @@ def add_shop_items():
 def shop_items():
     if current_user.id == 1:
         items = Product.query.order_by(Product.date_added).all()
+        for item in items:
+            if item.product_picture:
+                product_picture_path = item.product_picture.split('/')[1:]
+                final_product_picture_path = '/'.join(product_picture_path)
+                print(final_product_picture_path)
         return render_template('shop-items.html', items=items)
     return render_template('404.html')
 
@@ -92,7 +100,7 @@ def item_update(item_id):
 
             file = form.product_picture.data
             file_name = secure_filename(file.filename)# removes whitespace and invalid characters from filename
-            file_path = f'./media/{file_name}'
+            file_path = f'./static/{file_name}'
             file.save(file_path)    
 
             try:
