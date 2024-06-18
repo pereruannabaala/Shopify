@@ -125,14 +125,9 @@
                     {% set product_picture_path = item.product_picture.split('/')[1:] %}
                     {% set final_product_picture_path = '/'.join(product_picture_path) %}  
             <div class="col" style="background-color: white;">
-<<<<<<< HEAD
-            
-                <img src="{{ url_for('static', filename='images/oraimoWatch.jpg') }}" alt="{{ item.product_name }}" style="height: 202px; width: 180px; border-radius: 10px;">
-=======
                 
             <img src="{{ final_product_picture_path}}" alt="{{ item.product_name }}" style="height: 202px; width: 180px; border-radius: 10px;">
-                
->>>>>>> 1637d5130755a975ccf7100a8e3901284ccf3f99
+            
         
                 <div class="row" style="margin-top: 5px;">
                     <h6 style="color: gray;">{{ item.product_name }}</h6>
