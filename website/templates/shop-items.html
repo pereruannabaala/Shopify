@@ -39,7 +39,7 @@
             <td>{{ item.previous_price }}</td>
             <td>{{ item.current_price }}</td>
             <td>{{ item.in_stock }}</td>
-            <td><img src="{{ final_product_picture_path }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td> 
+            <td><img src="{{ url_for('static', filename=final_product_picture_path) }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td> 
             <td>{{ item.flash_sale }}</td>
 
 

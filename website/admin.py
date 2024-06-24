@@ -69,7 +69,7 @@ def shop_items():
             if item.product_picture:
                 product_picture_path = item.product_picture.split('/')[1:]
                 final_product_picture_path = '/'.join(product_picture_path)
-                print(final_product_picture_path)
+                print("Product path (admin)---->",final_product_picture_path)
         return render_template('shop-items.html', items=items)
     return render_template('404.html')
 
