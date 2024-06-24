@@ -21,14 +21,13 @@ def home():
         if item.product_picture:
             product_picture_path = item.product_picture.split('/')[1:]
             final_product_picture_path = '/'.join(product_picture_path)
-            print(final_product_picture_path)
+            print("Product path:", final_product_picture_path)
     return render_template('home.html', items=items)
 
 
-# @views.route('/add-to-cart/<int:item_id') (Should be <int:item_id> with closing angle bracket)
 @views.route('/add-to-cart/<int:item_id>')
 @login_required
-# def add_to_cart(item_id) (You hadn't added a colon to this view function)
+
 def add_to_cart(item_id):
     item_to_add = Product.query.get(item_id)
     item_exists = Cart.query.filter_by(product_link=item_id, customer_link=current_user.id).first()

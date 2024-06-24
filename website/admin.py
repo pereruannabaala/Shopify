@@ -100,9 +100,12 @@ def item_update(item_id):
 
             file = form.product_picture.data
             file_name = secure_filename(file.filename)# removes whitespace and invalid characters from filename
-            file_path = f'./static/{file_name}'
-            file.save(file_path)    
+            print('File name: ', file_name)
+            file_path = os.path.join('website/static/images/' + file_name)
+            print('File path: ', file_path)
+            file.save(file_path)
 
+            
             try:
                 Product.query.filter_by(id=item_id).update(dict(product_name=product_name,
                                                                 current_price=current_price, 
