@@ -25,10 +25,8 @@ def home():
             print("Product path", final_product_picture_path)
     return render_template('home.html', items=items)
 
-
 @views.route('/add-to-cart/<int:item_id>')
 @login_required
-
 def add_to_cart(item_id):
     item_to_add = Product.query.get(item_id)
     item_exists = Cart.query.filter_by(product_link=item_id, customer_link=current_user.id).first()
@@ -41,4 +39,8 @@ def add_to_cart(item_id):
         except Exception as e:
             print('Quantity not Updated', e)
             flash(f'Quantity of { item_exists.product.product_name } not updated')
+            return redirect(request.referrer)
+        except Exception as e:
+            print('Quantity not Updated', e)
+            flash(f'Quantity of { item_exists.product.product_name} not updated')
             return redirect(request.referrer)
