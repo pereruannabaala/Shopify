@@ -44,3 +44,17 @@ def add_to_cart(item_id):
             print('Quantity not Updated', e)
             flash(f'Quantity of { item_exists.product.product_name} not updated')
             return redirect(request.referrer)
+
+    new_cart_item = Cart()
+    new_cart_item = 1
+    new_cart_item.product_link = item_to_add.id
+    new_cart_item.customer_link = current_user.id
+
+    try:
+        db.session.add(new_cart_item)
+        db.session.commit()
+        flash(f'{new_cart_item.product.product_name} added to cart')
+    except Exception as e:
+        print('Item not added to Cart',e)
+        flash(f'{new_cart_item.product.product_name} has not been added to Cart')
+    return redirect(request.referrer)
