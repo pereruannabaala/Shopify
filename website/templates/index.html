@@ -57,19 +57,12 @@
           <a class="nav-link text-grey" href="/cart"><span class="badge bg-success"></span> Cart
             <i class="fa-solid fa-cart-shopping"></i>
           </a>
-
+          {% else %}
           <a class="nav-link text-grey" href="/cart"><span class="badge bg-success"></span> Cart
             <i class="bi bi-4-square-fill"></i>
           </a>
-
-          {% else %}
-          <a class="nav-link text-grey" href="/cart"><span class="badge bg-success"></span> Cart
-            <i class="bi bi-{{ cart | length }}-square-fill"></i>
-          </a>
-          
           {% endif %}
-          
-          
+                    
         </li>
 
         <li class="nav-item mx-2" id="items">
