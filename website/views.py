@@ -23,8 +23,9 @@ def home():
             product_picture_path = item.product_picture.split('/')[3:]
             final_product_picture_path = '/'.join(product_picture_path)
             print("Product path", final_product_picture_path)
-    return render_template('home.html', items=items cart = Cart.query.filter_by(customer_link=current_user.id).all()
-                            if current_user.is_authenticated else []) 
+    return render_template('home.html', items=items, cart = Cart.query.filter_by(customer_link=current_user.id).all()
+                            if current_user.is_authenticated else [] )
+
 
 @views.route('/add-to-cart/<int:item_id>')
 @login_required
@@ -60,3 +61,9 @@ def add_to_cart(item_id):
         print('Item not added to Cart',e)
         flash(f'{new_cart_item.product.product_name} has not been added to Cart')
     return redirect(request.referrer)
+
+
+@Views.route('/cart')
+@login_required
+def show_cart():
+    
