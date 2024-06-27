@@ -147,3 +147,5 @@ def delete_item(item_id):
             flash('Item not deleted')
         return redirect(url_for('admin.shop_items'))
     return render_template('404.html')
+
+
