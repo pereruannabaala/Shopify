@@ -66,4 +66,8 @@ def add_to_cart(item_id):
 @Views.route('/cart')
 @login_required
 def show_cart():
-    
+    cart = Cart.query.filter_by(customer_link=current_user.id).all()
+    amount = 0
+    for items in cart:
+        amount += item.product.current_price + item.quantity
+    return render_templates('cart.html', cart=cart, amount=amount, total=amount+200)
