@@ -23,16 +23,17 @@ def home():
             product_picture_path = item.product_picture.split('/')[3:]
             final_product_picture_path = '/'.join(product_picture_path)
             print("Product path", final_product_picture_path)
-    return render_template('home.html', items=items)
+    return render_template('home.html', items=items cart = Cart.query.filter_by(customer_link=current_user.id).all()
+                            if current_user.is_authenticated else []) 
 
 @views.route('/add-to-cart/<int:item_id>')
 @login_required
 def add_to_cart(item_id):
     item_to_add = Product.query.get(item_id)
     item_exists = Cart.query.filter_by(product_link=item_id, customer_link=current_user.id).first()
-    if items_exists:
+    if item_exists:
         try:
-            item_exists.quantity = item_exists.quantity + 1
+            item_exists.quantity = item_exists.quantity + 1 
             db.session.commit()
             flash(f' Quantity of { item_exists.product.product_name } has been updated')
             return redirect(request.referrer)
@@ -45,10 +46,11 @@ def add_to_cart(item_id):
             flash(f'Quantity of { item_exists.product.product_name} not updated')
             return redirect(request.referrer)
 
-    new_cart_item = Cart()
-    new_cart_item = 1
-    new_cart_item.product_link = item_to_add.id
-    new_cart_item.customer_link = current_user.id
+    new_cart_item = Cart(
+        quantity = 1,
+        product_link = item_to_add.id,
+        customer_link = current_user.id,
+    )
 
     try:
         db.session.add(new_cart_item)
