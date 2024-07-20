@@ -73,16 +73,17 @@ def show_cart():
     return render_template('cart.html', cart=cart, amount=amount, total=amount+200)
 
 
-@views.route('/pluscart')
+@views.route('/pluscart/<int:cart_id>')
 @login_required
-def plus_cart():
+def plus_cart(cart_id):
     if request.method == 'GET':
         cart_id = request.args.get('cart_id')
         cart_item = Cart.query.get(cart_id)
-        cart_item.quantity = cart_item.quantity + 1
+        # cart_item.quantity = cart_item.quantity + 1
+        print (cart_item, cart_item.id)
         db.session.commit()
         
-        cart = Cart.query.filter_by(customer_link=curremt_user.id).all()
+        cart = Cart.query.filter_by(customer_link=current_user.id).all()
 
         amount = 0
 

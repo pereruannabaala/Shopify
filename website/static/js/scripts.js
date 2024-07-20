@@ -6,7 +6,7 @@ $('.plus-cart').click(function(){
 
     $.ajax({
         type: 'GET',
-        url: '/pluscart',
+        url: '{{url_for("plus_cart")}}',
         data: {
             cart_id: id
         },
