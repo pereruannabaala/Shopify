@@ -23,7 +23,7 @@ $('.plus-cart').click(function(){
 })
 
 
-$('.plus-cart').click(function(){
+$('.minus-cart').click(function(){
     console.log('Button clicked')
 
     var id = $(this).attr('pid').toString()
@@ -31,7 +31,7 @@ $('.plus-cart').click(function(){
 
     $.ajax({
         type: 'GET',
-        url: '/pluscart',
+        url: '/minuscart',
         data: {
             cart_id: id
         },
