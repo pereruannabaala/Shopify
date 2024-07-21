@@ -6,7 +6,7 @@ $('.plus-cart').click(function(){
 
     $.ajax({
         type: 'GET',
-        url: '{{url_for("plus_cart")}}',
+        url: '/pluscart',
         data: {
             cart_id: id
         },
@@ -15,8 +15,8 @@ $('.plus-cart').click(function(){
             console.log(data)
             quantity.innerText = data.quantity
             document.getElementById(`quantity${id}`).innerText = data.quantity
-            document.getElementById('amount_tt').innerText = data.amount
-            document.getElementById('totalamount').innerText = data.total
+            document.getElementById(`amount_tt`).innerText = data.amount
+            document.getElementById(`totalamount`).innerText = data.total
 
         }
     })
