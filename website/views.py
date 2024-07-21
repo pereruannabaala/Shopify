@@ -6,6 +6,8 @@ from . import db
 
 views = Blueprint('views',__name__)
 
+API_PUBLISHABLE_KEY = 'ISPubKey_test_598f1362-004c-4d26-be47-8cee94c488cc'
+
 @views.route('/')
 def home():
     items = Product.query.all()
