@@ -56,9 +56,15 @@ var to_remove = this.parentNode.parentNode.parentNode.parentNode
 
 $.ajax({
     type: 'GET',
-    url:'removecart',
+    url:'/removecart',
     data: {
         cart_id: id
     },
+
+    success: function(data){
+        document.getElementById('amount_tt').innerText = data.amount
+        document.getElementById('totalamount').innerText = data.total
+        to_remove.remove()
+    }
 })
 })
