@@ -46,3 +46,19 @@ $('.minus-cart').click(function(){
         }
     })
 })
+
+
+$('.remove-cart').click(function(){
+
+var id = $(this).attr('pid').toString()
+
+var to_remove = this.parentNode.parentNode.parentNode.parentNode
+
+$.ajax({
+    type: 'GET',
+    url:'removecart',
+    data: {
+        cart_id: id
+    },
+})
+})
