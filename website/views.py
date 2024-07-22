@@ -2,13 +2,14 @@ from flask import Blueprint, render_template,flash,redirect,request,jsonify
 from .models import Product, Cart
 from flask_login import login_required, current_user
 from . import db 
+from intasend import APIService
 
 
 views = Blueprint('views',__name__)
 
 API_PUBLISHABLE_KEY = 'ISPubKey_test_598f1362-004c-4d26-be47-8cee94c488cc'
 
-API_TOKEN = 'ISSecretKey_test_e0561796-274b-458f-b0fa-76bbced5a59d'
+API_TOKEN = 'ISSecretKey_test_dca8e55e-97fa-43c8-a4b1-fff179cf560b'
 
 @views.route('/')
 def home():
@@ -151,3 +152,28 @@ def remove_cart():
         }
         
         return jsonify(data)
+    
+
+@views.route('/place-holder')
+@login_required
+def place_order():
+    customer_cart = Cart.query.filter_by(customer_link=current_user.id)
+    if customer_cart:
+        total = 0
+        for item in customer_cart:
+            total += item.product.current_price * item.quantity
+
+        service = APIService(token=API_TOKEN, publishable_key=API_PUBLISHABLE_KEY, test=True)
+        create_order = service.collect.mpesa_stk_push(phone_number='+254757364069',
+                                                      email='current_user.email', 
+                                                      amount=total+200,
+                                                      narrative='Purchase of Items')
+        
+        for item in customer_cart:
+            new_order = Order()
+            new_order.quantity = item.quantity
+            new_order.price = item.product.current_price
+            new_order.status = create_order_response('status','pending')
+
+        
+        
