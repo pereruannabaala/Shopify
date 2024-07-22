@@ -8,3 +8,5 @@ service = APIService(token=API_TOKEN, publishable_key=API_PUBLISHABLE_KEY, test=
 
 create_order = service.collect.mpesa_stk_push(phone_number=0757364069, email='test@gmai.com', amount=100,
                                               narrative='Purchase of Items')
+
+print(create_order)
