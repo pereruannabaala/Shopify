@@ -1,4 +1,4 @@
-from intasendi import APIService
+from intasend import APIService
 
 API_PUBLISHABLE_KEY = 'ISPubKey_test_598f1362-004c-4d26-be47-8cee94c488cc'
 
