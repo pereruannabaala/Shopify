@@ -154,4 +154,5 @@ def delete_item(item_id):
 def order_view():
     if current_user.id == 1:
         orders = Order.query.all()
-        return render_template('view-orders.html', orders=orders)
+        return render_template('view_orders.html', orders=orders)
+    return render_template('404.html')

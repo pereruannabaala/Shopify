@@ -16,9 +16,10 @@
                     <!-- <h3>Orders</h3> -->
                     {% for item in orders %}
 
+        
                     <div class="row">
                         <div class="col-sm-3 text-center align-self-center">
-                            <img src="{{ item.product.product_picture }}" alt="" class="img-fluid img-thumbnail shadow-sm" height="150px" width="150px">
+                            <img src="{{ final_product_picture_path}}" alt="" class="img-fluid img-thumbnail shadow-sm" height="150px" width="150px">
                         </div>
                         <div class="col-sm-7">
                             
@@ -59,7 +60,10 @@
                         </div>
                     </div>
                     <hr class="text-muted">
+
+                    
                     {% endfor %}
+                   
                 </div>
             </div>
         </div>

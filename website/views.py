@@ -190,9 +190,9 @@ def place_order():
 
                 db.session.commit()
 
-                flash('Order Placed Successfully')
+            flash('Order Placed Successfully')
             
-                return "Order Placed"
+            return redirect('/orders')
         except Exception as e:
             print(e)
             flash('Order not placed')
@@ -204,6 +204,6 @@ def place_order():
 
 @views.route('/orders')
 @login_required
-def order():
+def orders():
     orders = Order.query.filter_by(customer_link=current_user.id).all()
     return render_template('orders.html', orders=orders)
