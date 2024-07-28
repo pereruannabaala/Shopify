@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template,flash,redirect,request,jsonify
-from .models import Product, Cart
+from .models import Product, Cart, Order
 from flask_login import login_required, current_user
 from . import db 
 from intasend import APIService
@@ -166,7 +166,7 @@ def place_order():
 
             service = APIService(token=API_TOKEN, publishable_key=API_PUBLISHABLE_KEY, test=True)
             create_order_response= service.collect.mpesa_stk_push(phone_number=+254757364069,
-                                                      email='current_user.email', 
+                                                      email=current_user.email, 
                                                       amount=total+200,
                                                       narrative='Purchase of Items')
         
@@ -200,3 +200,5 @@ def place_order():
     else:
         flash('Cart is empty')
         return redirect('/')  
+
+
