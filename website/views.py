@@ -206,4 +206,9 @@ def place_order():
 @login_required
 def orders():
     orders = Order.query.filter_by(customer_link=current_user.id).all()
+    for order in orders:
+        product = Product.query.get(order.product_link)
+        order.product_name = product.product_name
+        order.product_picture = product.product_picture
+        print(order.product_picture)
     return render_template('orders.html', orders=orders)
