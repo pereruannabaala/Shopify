@@ -154,5 +154,12 @@ def delete_item(item_id):
 def order_view():
     if current_user.id == 1:
         orders = Order.query.all()
+        for order in orders:
+            if order.product_link:
+                product_image_path=order.product.product_picture
+                product_image_path = product_image_path.split('/')[2:]
+                final_product_image_path = '/'.join(product_image_path)
+                print("order", final_product_image_path)
+                #print("order ", product_image_path)
         return render_template('view_orders.html', orders=orders)
     return render_template('404.html')

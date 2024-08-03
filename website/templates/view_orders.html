@@ -30,6 +30,11 @@
     <tbody>
 
         {% for order in orders %}
+            {% if order.product.product_picture %}
+                {% set product_picture_path = order.product.product_picture.split('/')[2:] %}
+                {% set final_product_picture_path = '/'.join(product_picture_path) %}
+
+        
 
         <tr>
             <td>{{ order.id }}</td>
@@ -41,7 +46,7 @@
             <td>{{ order.price }}</td>
             <td>{{ order.quantity }}</td>
 
-            <td><img src="{{ order.product.product_picture }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td>
+            <td><img src="{{ url_for('static', filename=final_product_picture_path) }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td>
 
 
             <td>{{ order.status}}</td>
@@ -53,6 +58,7 @@
 
         </tr>
 
+        {% endif%}
         {% endfor %}
     </tbody>
 </table>
