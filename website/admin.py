@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, send_from_directory, url_for, redirect
 from flask_login import login_required, current_user
-from .forms import ShopItemsForm
+from .forms import ShopItemsForm, OrderForm
 from .models import Product, Order
 from . import db
 from werkzeug.utils import secure_filename
@@ -162,4 +162,14 @@ def order_view():
                 print("order", final_product_image_path)
                 #print("order ", product_image_path)
         return render_template('view_orders.html', orders=orders)
+    return render_template('404.html')
+
+@admin.route('/update-order/<int:order_id>',methods=['GET', 'POST'])
+@login_required
+def update_order(order_id):
+    if current_user.id ==1:
+        form = OrderForm()
+
+        return render_template('order_update.html', form=form)
+    
     return render_template('404.html')
