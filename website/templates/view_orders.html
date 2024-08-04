@@ -52,7 +52,7 @@
             <td>{{ order.status}}</td>
 
             <td>
-                <a href="/update-order/{{ order.id }}">Update Status</a>
+                <a href="{{ url_for('admin.update_order', order_id=order.id) }}">Update Status</a>
             </td>
 
 
