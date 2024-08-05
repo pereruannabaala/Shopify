@@ -167,8 +167,23 @@ def order_view():
 @admin.route('/update-order/<int:order_id>',methods=['GET', 'POST'])
 @login_required
 def update_order(order_id):
-    if current_user.id ==1:
+    if current_user.id == 1:
         form = OrderForm()
+
+        order = Order.query.get(order_id)
+
+        if form.validate_on_submit():
+            status = form.order_status.data
+            order.status = status
+
+            try:
+                db.session.commit()
+                flash(f'Order {order_id} Updated Successfully')
+                return redirect('/view-orders')
+            except Exception as e:
+                print(e)
+                flash(f'Order {order_id} not updated')
+                return redirect('/view-orders')
 
         return render_template('order_update.html', form=form)
     
