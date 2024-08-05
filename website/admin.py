@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, send_from_directory, url_for, redirect
 from flask_login import login_required, current_user
 from .forms import ShopItemsForm, OrderForm
-from .models import Product, Order
+from .models import Product, Order, Customer
 from . import db
 from werkzeug.utils import secure_filename
 import os
@@ -190,10 +190,18 @@ def update_order(order_id):
     return render_template('404.html')
 
 
-@admin.rute('/customers')
+@admin.route('/customers')
 @login_required
 def display_customer():
     if current_user.id == 1:
         customers = Customer.query.all()
-        return render_template('customers.html', customers=customers)
-    return render_template('404.html')  
+        return render_template('customer.html', customers=customers)
+    return render_template('404.html')
+
+
+@admin.route('/admin-page')
+@login_required
+def admin_page():
+    if current_user.id == 1:
+        return render_template('admin.html')
+    return render_template('404.html')
