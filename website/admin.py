@@ -179,12 +179,21 @@ def update_order(order_id):
             try:
                 db.session.commit()
                 flash(f'Order {order_id} Updated Successfully')
-                return redirect('/view-orders')
+                return redirect(url_for('admin.view-orders'))
             except Exception as e:
                 print(e)
                 flash(f'Order {order_id} not updated')
-                return redirect('/view-orders')
+                return redirect(url_for('admin.view-orders'))
 
         return render_template('order_update.html', form=form)
     
     return render_template('404.html')
+
+
+@admin.rute('/customers')
+@login_required
+def display_customer():
+    if current_user.id == 1:
+        customers = Customer.query.all()
+        return render_template('customers.html', customers=customers)
+    return render_template('404.html')  
