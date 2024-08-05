@@ -179,11 +179,11 @@ def update_order(order_id):
             try:
                 db.session.commit()
                 flash(f'Order {order_id} Updated Successfully')
-                return redirect(url_for('admin.view-orders'))
+                return redirect(url_for('admin.order_view'))
             except Exception as e:
                 print(e)
                 flash(f'Order {order_id} not updated')
-                return redirect(url_for('admin.view-orders'))
+                return redirect(url_for('admin.order_view'))
 
         return render_template('order_update.html', form=form)
     
