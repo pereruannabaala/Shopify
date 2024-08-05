@@ -212,3 +212,11 @@ def orders():
         order.product_picture = product.product_picture
         print(order.product_picture)
     return render_template('orders.html', orders=orders)
+
+
+@views.route('/search',methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        search_query = request.form.get('search')
+        items = Product.query.filter_by(Product.product_name.ilike(f'%{search_query}%')).all()
+        return render_template('search.html', items=items)
