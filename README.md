@@ -1,4 +1,4 @@
-# E-Commerce System - Python Flask and SQLite
+![image](https://github.com/user-attachments/assets/8f4ad05a-bf17-4a7f-8a21-c9276f4fccc6)# E-Commerce System - Python Flask and SQLite
 
 ## Overview
 
@@ -28,9 +28,10 @@ This is a simple e-commerce system built using Python's Flask web framework and 
 ### Setup
 
 1. Clone the repository
-
-python``
+```python
 git clone https://github.com/your-username/ecommerce-flask.git
 cd ecommerce-flask
+```
+
 
 
