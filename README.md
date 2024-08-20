@@ -29,9 +29,28 @@ This is a simple e-commerce system built using Python's Flask web framework and 
 
 1. Clone the repository
 ```python
-git clone https://github.com/your-username/ecommerce-flask.git
-cd ecommerce-flask
+git clone git@github.com:pereruannabaala/Shopify.git
+cd Shopify
 ```
 
+2. Activate virtual environment
+```python
+source shop_venv/bin/activate
+```
 
+3. Install the Required Packages
+```python
+pip install -r requirements.txt
+```
 
+4.Set up database
+```python
+flask db init
+flask db migrate
+flask db upgrade
+```
+
+5.Run the application
+```python
+flask run
+```
