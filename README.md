@@ -8,4 +8,9 @@ This is a simple e-commerce system built using Python's Flask web framework and 
 
 ## User Features
 
-+ *Product Browsing:* Customers can view available products listed in the database.
++ **Product Browsing:** Customers can view available products listed in the database.
++ **Product Search:** Customers can search for specific products using a search bar.
++ **Shopping Cart:** Customers can add products to their shopping cart.
++ **Order Placement:** Customers can place orders for the products in their cart.
+
+## Admin Features
