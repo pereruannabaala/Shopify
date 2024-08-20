@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8f4ad05a-bf17-4a7f-8a21-c9276f4fccc6)# E-Commerce System - Python Flask and SQLite
+# E-Commerce System - Python Flask and SQLite
 
 ## Overview
 
