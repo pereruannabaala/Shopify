@@ -25,4 +25,12 @@ This is a simple e-commerce system built using Python's Flask web framework and 
 + Flask
 + SQLite
 
+### Setup
+
+1. Clone the repository
+
+python``
+git clone https://github.com/your-username/ecommerce-flask.git
+cd ecommerce-flask
+
 
