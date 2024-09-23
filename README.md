@@ -15,7 +15,7 @@ This is a simple e-commerce system built using Python's Flask web framework and 
 
 ### Admin Features
 + **Product Management:** Admins can view and manage the products available in the database.
-+ **Order Management:** Admins can view all customer orders.
++ **Order Management:** Admins can view and manage all customer orders.
 + **User Analytics:** Admins can see the number of customers who accessed the e-commerce platform.
 
 ## Installations
