@@ -70,3 +70,6 @@ Admins have the ability to:
 + **View and Update Orders**: See customer orders and manage order statuses.
 + **Track Customer Activity**: View the number of customers accessing the platform.
 
+## Contributing
+Feel free to fork this repository and submit pull requests. Contributions, suggestions, and issues are welcome!
+
