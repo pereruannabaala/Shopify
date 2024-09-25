@@ -62,7 +62,7 @@ The system uses SQLite with the following key tables:
 + **Cart**: Contains details of the quantity,customer and product
 + **Orders**: Stores details of customer orders, including products purchased and order status.
 
-##Admin Privileges
+## Admin Privileges
 Admins have the ability to:
 + **Add Products**: Add new products to the system.
 + **Update Products**: Modify product details such as price or quantity.
