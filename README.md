@@ -59,6 +59,7 @@ flask run
 The system uses SQLite with the following key tables:
 + **Users**: Stores customer and admin login credentials.
 + **Products**: Contains details of available products such as name, description, price, and stock.
++ **Cart**: Contains details of the quantity,customer and product
 + **Orders**: Stores details of customer orders, including products purchased and order status.
 
 
